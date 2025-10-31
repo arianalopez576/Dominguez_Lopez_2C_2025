@@ -31,7 +31,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "stdbool.h"
-
+#include "led.h"
 
 
 /*==================[macros and definitions]=================================*/
@@ -61,10 +61,12 @@ void medir_distancia(void *puntero_tarea_distancia){
 	while (true){
 		detectar_toque();  // Chequear si hubo toque
 		if (encendido){
+			LedOn(LED_1); //Enciende Led cuando está encendido
 			uint16_t distancia = HcSr04ReadDistanceInCentimeters();
 			activar_vibrador(distancia);
 		}else {
             GPIOOff(GPIO_0);
+			LedOff(LED_1);
 		}
 		vTaskDelay(200/portTICK_PERIOD_MS);
 	}
@@ -80,6 +82,8 @@ void app_main(void){
 	GPIOInit(GPIO_0, GPIO_OUTPUT);
 	//inicializacion sensor de gesto
 	GPIOInit(GPIO_1, GPIO_INPUT);
+
+	LedsInit();
 
 	xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
 }
