@@ -28,10 +28,15 @@
 #include <stdint.h>
 #include "hc_sr04.h"
 #include "gpio_mcu.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "stdbool.h"
+
+
 
 /*==================[macros and definitions]=================================*/
 
-bool encendido = False;
+bool encendido = false;
 TaskHandle_t tarea_distancia = NULL;
 
 /*==================[internal data definition]===============================*/
@@ -39,23 +44,29 @@ TaskHandle_t tarea_distancia = NULL;
 /*==================[internal functions declaration]=========================*/
 void activar_vibrador(uint16_t distancia){
 	if (distancia < 40){
-		GPIO_On(GPIO_10);
+		GPIOOn(GPIO_0);
+	} 
+	else {
+		GPIOOff(GPIO_0);
 	} 
 }
 
 void detectar_toque(){
-	GPIORead(GPIO_11);
-	if (GPIORead){
-		encendido = True;
+	if (GPIORead(GPIO_1)){
+		encendido = !encendido;
 	}
 }
 
 void medir_distancia(void *puntero_tarea_distancia){
 	while (true){
+		detectar_toque();  // Chequear si hubo toque
 		if (encendido){
 			uint16_t distancia = HcSr04ReadDistanceInCentimeters();
+			activar_vibrador(distancia);
+		}else {
+            GPIOOff(GPIO_0);
 		}
-	vTaskDelay(1000/portTICK_PERIOD_MS);
+		vTaskDelay(200/portTICK_PERIOD_MS);
 	}
 }
 
@@ -63,12 +74,13 @@ void medir_distancia(void *puntero_tarea_distancia){
 
 /*==================[external functions definition]==========================*/
 void app_main(void){
+	//inicializacion hcsr
 	HcSr04Init(GPIO_3, GPIO_2);
 	//inicializacion vibrador
-	GPIOInit(GPIO_10, GPIO_OUTPUT);
+	GPIOInit(GPIO_0, GPIO_OUTPUT);
 	//inicializacion sensor de gesto
-	GPIOInit(GPIO_11, GPIO_INPUT)
+	GPIOInit(GPIO_1, GPIO_INPUT);
 
-	xTaskCreate(&medir_distancia, "LED_1", 512, NULL, 5, &tarea_distancia);
+	xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
 }
 /*==================[end of file]============================================*/
