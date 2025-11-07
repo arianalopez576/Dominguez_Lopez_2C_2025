@@ -39,31 +39,34 @@
 bool encendido = false;
 TaskHandle_t tarea_distancia = NULL;
 
-bool zona_1 = false;
-bool zona_2 = false;
-bool zona_3 = false;
-
 /*==================[internal data definition]===============================*/
+struct vibrador
+	{
+	uint8_t mode; //ON, OFF, TOGGLE
+	uint8_t n_ciclos; //indica la cantidad de ciclos de encendido/apagado (parpadeo)
+	uint16_t periodo; //indica el tiempo de cada ciclo
+	};
+
+#define OFF = 0; //cuando no vibra
+#define ON = 1;
+#define TOGGLE = 2;
 
 /*==================[internal functions declaration]=========================*/
 void activar_vibrador(uint16_t distancia){
-	/*
 	if (distancia < 40){
 		GPIOOn(GPIO_0);
 	} 
 	else {
 		GPIOOff(GPIO_0);
 	}
-		*/
-	if (zona_1){
-		vibrar_zona1();
+	/*
+	if (mi_vibrador.mode == OFF){
+		GPIOOff(GPIO_0);
 	}
-	else if (zona_2){
-		vibrar_zona2();
+	//----MODO TOGGLE---
+	else if (mi_vibrador.mode == ON){
 	}
-	else if (zona_3){
-		vibrar_zona3();
-	}
+	*/
 }
 
 void detectar_toque(){
@@ -71,6 +74,24 @@ void detectar_toque(){
 		encendido = !encendido;
 	}
 }
+/*
+void definir_zonas (uint16_t distancia){
+	if (distancia < 10){
+		LedOn(LED_1);
+		struct vibrador vibrador1;
+		vibrador1.mode = TOGGLE;
+		mi_led.n_ciclos = 10;
+		mi_led.periodo = 500; //estos son milisegundos
+	}
+	else if (distancia >= 10 && distancia < 30){
+		LedOn(LED_2);
+	}
+	else if (distancia >= 30){
+		LedOn(LED_3);
+	}
+}
+
+*/
 
 void medir_distancia(void *puntero_tarea_distancia){
 	while (true){
@@ -89,21 +110,6 @@ void medir_distancia(void *puntero_tarea_distancia){
 	}
 }
 
-void definir_zonas (uint16_t distancia){
-	if (distancia < 10){
-		zona_1 = true;
-		LedOn(LED_1);
-	}
-	else if (distancia >= 10 && distancia < 30){
-		zona_2 = true;
-		LedOn(LED_2);
-	}
-	else if (distancia >= 30){
-		zona_3 = true;
-		LedOn(LED_3);
-	}
-}
-
 /*==================[external functions definition]==========================*/
 void app_main(void){
 	//inicializacion hcsr
@@ -114,18 +120,17 @@ void app_main(void){
 	GPIOInit(GPIO_1, GPIO_INPUT);
 	//inicializacion leds
 	LedsInit();
-
+/*
 	//Inicializacion de timer
-	timer_config_t timer_zona1 = {
+	timer_config_t timer_zonas = {
         TIMER_A,
         300,
         FuncTimerA,
         NULL
     };
-	TimerInit(&timer_zona1);
+
+*/
 
 	xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
-
-	TimerStart(timer_zona1.timer);
 }
 /*==================[end of file]============================================*/
