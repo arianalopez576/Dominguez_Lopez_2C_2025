@@ -34,103 +34,111 @@
 #include "led.h"
 #include "timer_mcu.h"
 
-/*==================[macros and definitions]=================================*/
 
+/*==================[macros and definitions]=================================*/
 bool encendido = false;
 TaskHandle_t tarea_distancia = NULL;
+TaskHandle_t tarea_vibrador = NULL;
+
 
 /*==================[internal data definition]===============================*/
-struct vibrador
-	{
-	uint8_t mode; //ON, OFF, TOGGLE
-	uint8_t n_ciclos; //indica la cantidad de ciclos de encendido/apagado (parpadeo)
-	uint16_t periodo; //indica el tiempo de cada ciclo
-	};
+//definicion de las distancias a las que vibra
+#define DIST_MIN 20
+#define DIST_MEDIA 30
+#define DIST_ALTO 40
 
-#define OFF = 0; //cuando no vibra
-#define ON = 1;
-#define TOGGLE = 2;
+volatile uint16_t distancia;
 
 /*==================[internal functions declaration]=========================*/
-void activar_vibrador(uint16_t distancia){
-	if (distancia < 40){
-		GPIOOn(GPIO_0);
-	} 
-	else {
-		GPIOOff(GPIO_0);
-	}
-	/*
-	if (mi_vibrador.mode == OFF){
-		GPIOOff(GPIO_0);
-	}
-	//----MODO TOGGLE---
-	else if (mi_vibrador.mode == ON){
-	}
-	*/
+
+void vibrar(void *puntero_tarea_vibrador){
+    uint16_t tiempo_ON = 0;
+    uint16_t tiempo_OFF = 0;
+
+    while (true){
+        if (!encendido){
+            GPIOOff(GPIO_0);
+            LedOff(LED_1);
+            LedOff(LED_2);
+            LedOff(LED_3);
+            vTaskDelay(200 / portTICK_PERIOD_MS);
+            continue;
+        }
+
+        // Rango de distancia
+        if (distancia > DIST_ALTO){
+            // Muy lejos → no vibra
+            GPIOOff(GPIO_0);
+            LedOff(LED_1);
+            LedOff(LED_2);
+            LedOff(LED_3);
+            tiempo_OFF = 700;
+        }
+
+        else if (distancia <= DIST_ALTO && distancia > DIST_MEDIA){
+            LedOn(LED_3);
+            LedOff(LED_2);
+            LedOff(LED_1);
+            tiempo_ON = 100;
+            tiempo_OFF = 800;
+        }
+        else if (distancia <= DIST_MEDIA && distancia >= DIST_MIN){
+            LedOn(LED_2);
+            LedOff(LED_1);
+            LedOff(LED_3);
+            tiempo_ON = 150;
+            tiempo_OFF = 500;
+        }
+        else if (distancia < DIST_MIN){
+            LedOn(LED_1);
+            LedOff(LED_2);
+            LedOff(LED_3);
+            tiempo_ON = 200;
+            tiempo_OFF = 100;
+        }
+
+        // Vibración tipo pulso
+        if (distancia <= DIST_ALTO){
+            GPIOOn(GPIO_0);
+            vTaskDelay(tiempo_ON / portTICK_PERIOD_MS);
+            GPIOOff(GPIO_0);
+        }
+
+        vTaskDelay(tiempo_OFF / portTICK_PERIOD_MS);
+    }
 }
 
 void detectar_toque(){
-	if (GPIORead(GPIO_1)){
-		encendido = !encendido;
-	}
-}
-/*
-void definir_zonas (uint16_t distancia){
-	if (distancia < 10){
-		LedOn(LED_1);
-		struct vibrador vibrador1;
-		vibrador1.mode = TOGGLE;
-		mi_led.n_ciclos = 10;
-		mi_led.periodo = 500; //estos son milisegundos
-	}
-	else if (distancia >= 10 && distancia < 30){
-		LedOn(LED_2);
-	}
-	else if (distancia >= 30){
-		LedOn(LED_3);
-	}
-}
+    static bool anterior = false;
+    bool actual = GPIORead(GPIO_1);
 
-*/
+    // Solo cambia de estado en flanco ascendente (cuando pasa de 0 a 1)
+    if (actual && !anterior){
+        encendido = !encendido;
+    }
+    anterior = actual;
+}
 
 void medir_distancia(void *puntero_tarea_distancia){
-	while (true){
-		detectar_toque();  // Chequear si hubo toque
-		if (encendido){
-			LedOn(LED_1); //Enciende dos Leds cuando está encendido
-			LedOn(LED_2);
-			uint16_t distancia = HcSr04ReadDistanceInCentimeters();
-			activar_vibrador(distancia);
-		}else {
-            GPIOOff(GPIO_0);
-			LedOff(LED_1);
-			LedOff(LED_2);
-		}
-		vTaskDelay(200/portTICK_PERIOD_MS);
-	}
+    while (true){
+        detectar_toque();  // Chequear si hubo toque
+        if (encendido){
+            distancia = HcSr04ReadDistanceInCentimeters();
+        } else {
+            distancia = 99;
+        }
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+    }
 }
 
 /*==================[external functions definition]==========================*/
+
 void app_main(void){
-	//inicializacion hcsr
-	HcSr04Init(GPIO_3, GPIO_2);
-	//inicializacion vibrador
-	GPIOInit(GPIO_0, GPIO_OUTPUT);
-	//inicializacion sensor de gesto
-	GPIOInit(GPIO_1, GPIO_INPUT);
-	//inicializacion leds
-	LedsInit();
-/*
-	//Inicializacion de timer
-	timer_config_t timer_zonas = {
-        TIMER_A,
-        300,
-        FuncTimerA,
-        NULL
-    };
+    HcSr04Init(GPIO_3, GPIO_2);
+    GPIOInit(GPIO_0, GPIO_OUTPUT); // Vibrador
+    GPIOInit(GPIO_1, GPIO_INPUT);  // Sensor de toque
+    LedsInit();
 
-*/
-
-	xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
+    xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
+    xTaskCreate(&vibrar, "VIBRAR", 512, NULL, 5, &tarea_vibrador);
 }
-/*==================[end of file]============================================*/
