@@ -10,7 +10,7 @@
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * |  Resistencia	| 	GPIO_0		|
+ * |  Resistencia	| 	GPIO_9		|
  *
  *
  * @section changelog Changelog
@@ -57,7 +57,7 @@ void vibrar(void *puntero_tarea_vibrador){
 
     while (true){
         if (!encendido){
-            GPIOOff(GPIO_0);
+            GPIOOff(GPIO_9);
             LedOff(LED_1);
             LedOff(LED_2);
             LedOff(LED_3);
@@ -68,7 +68,7 @@ void vibrar(void *puntero_tarea_vibrador){
         // Rango de distancia
         if (distancia > DIST_ALTO){
             // Muy lejos → no vibra
-            GPIOOff(GPIO_0);
+            GPIOOff(GPIO_9);
             LedOff(LED_1);
             LedOff(LED_2);
             LedOff(LED_3);
@@ -99,9 +99,9 @@ void vibrar(void *puntero_tarea_vibrador){
 
         // Vibración tipo pulso
         if (distancia <= DIST_ALTO){
-            GPIOOn(GPIO_0);
+            GPIOOn(GPIO_9);
             vTaskDelay(tiempo_ON / portTICK_PERIOD_MS);
-            GPIOOff(GPIO_0);
+            GPIOOff(GPIO_9);
         }
 
         vTaskDelay(tiempo_OFF / portTICK_PERIOD_MS);
@@ -135,7 +135,7 @@ void medir_distancia(void *puntero_tarea_distancia){
 
 void app_main(void){
     HcSr04Init(GPIO_3, GPIO_2);
-    GPIOInit(GPIO_0, GPIO_OUTPUT); // Vibrador
+    GPIOInit(GPIO_9, GPIO_OUTPUT); // Vibrador
     GPIOInit(GPIO_1, GPIO_INPUT);  // Sensor de toque
     LedsInit();
 
