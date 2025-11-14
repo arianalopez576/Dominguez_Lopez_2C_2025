@@ -19,7 +19,7 @@
  * |:----------:|:-----------------------------------------------|
  * | 12/09/2023 | Document creation		                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Ariana y Carmela
  *
  */
 
@@ -33,6 +33,7 @@
 #include "stdbool.h"
 #include "led.h"
 #include "timer_mcu.h"
+#include "ble_mcu.h"
 
 
 /*==================[macros and definitions]=================================*/
@@ -46,6 +47,7 @@ TaskHandle_t tarea_vibrador = NULL;
 #define DIST_MIN 20
 #define DIST_MEDIA 30
 #define DIST_ALTO 40
+#define CONFIG_BLINK_PERIOD 500
 
 volatile uint16_t distancia;
 
@@ -121,15 +123,25 @@ void detectar_toque(){
 
 void medir_distancia(void *puntero_tarea_distancia){
     while (true){
+        char msg[32];
         detectar_toque();  // Chequear si hubo toque
         if (encendido){
             distancia = HcSr04ReadDistanceInCentimeters();
+            sprintf(msg, "distancia: %u\n", distancia);
+            // Enviar por BLE correctamente
+            BleSendString(msg);
         } else {
             distancia = 99;
         }
         vTaskDelay(200 / portTICK_PERIOD_MS);
     }
 }
+
+void read_data(uint8_t * distancia, uint8_t length){
+
+
+}
+
 
 /*==================[external functions definition]==========================*/
 
@@ -138,7 +150,28 @@ void app_main(void){
     GPIOInit(GPIO_9, GPIO_OUTPUT); // Vibrador
     GPIOInit(GPIO_1, GPIO_INPUT);  // Sensor de toque
     LedsInit();
+    ble_config_t ble_configuration = {
+        "TIEMBLA RAYBAN",
+        read_data
+    };
 
-    xTaskCreate(&medir_distancia, "MEDIR", 512, NULL, 5, &tarea_distancia);
-    xTaskCreate(&vibrar, "VIBRAR", 512, NULL, 5, &tarea_vibrador);
+    BleInit(&ble_configuration);
+      
+    xTaskCreate(&medir_distancia, "MEDIR", 4096, NULL, 5, &tarea_distancia);
+    xTaskCreate(&vibrar, "VIBRAR", 4096, NULL, 5, &tarea_vibrador);
+
+    while(1){
+        vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+        switch(BleStatus()){
+            case BLE_OFF:
+                LedOff(LED_1);
+            break;
+            case BLE_DISCONNECTED:
+                LedToggle(LED_2);
+            break;
+            case BLE_CONNECTED:
+                LedOn(LED_3);
+            break;
+        }
+    }
 }

@@ -34,9 +34,6 @@
             "path": "examples/ej_mfrc522"
         },
         {
-            "path": "projects"
-        },
-        {
             "path": "projects/ProyectoFinal"
         }
     ],
