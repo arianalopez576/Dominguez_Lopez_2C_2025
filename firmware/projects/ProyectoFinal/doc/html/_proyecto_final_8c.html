@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto Final: Referencia del archivo C:/Users/Usuario/Desktop/Repositorios/Dominguez_Lopez_2C_2025/firmware/projects/ProyectoFinal/main/ProyectoFinal.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Proyecto Final<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Lentes de proximidad</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_proyecto_final_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo ProyectoFinal.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="hc__sr04_8h_source.html">hc_sr04.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpio__mcu_8h_source.html">gpio_mcu.h</a>&quot;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;stdbool.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ble__mcu_8h_source.html">ble_mcu.h</a>&quot;</code><br />
+</div>
+<p><a href="_proyecto_final_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a9f80a58781e2245b940e91a5798e6ee9" id="r_a9f80a58781e2245b940e91a5798e6ee9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f80a58781e2245b940e91a5798e6ee9">DIST_MIN</a>&#160;&#160;&#160;20</td></tr>
+<tr class="memitem:a5c91a9cb5ee72b177f61f609ef294a2c" id="r_a5c91a9cb5ee72b177f61f609ef294a2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c91a9cb5ee72b177f61f609ef294a2c">DIST_MEDIA</a>&#160;&#160;&#160;30</td></tr>
+<tr class="memitem:ae36301210b8afcc69240930aa770e2dd" id="r_ae36301210b8afcc69240930aa770e2dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36301210b8afcc69240930aa770e2dd">DIST_ALTO</a>&#160;&#160;&#160;40</td></tr>
+<tr class="memitem:a3df1b4cad09974bfc68858fad7cdc054" id="r_a3df1b4cad09974bfc68858fad7cdc054"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df1b4cad09974bfc68858fad7cdc054">CONFIG_BLINK_PERIOD</a>&#160;&#160;&#160;500</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a9de19645daa3295cd26bc40b40816dc9" id="r_a9de19645daa3295cd26bc40b40816dc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9de19645daa3295cd26bc40b40816dc9">vibrar</a> (void *puntero_tarea_vibrador)</td></tr>
+<tr class="memdesc:a9de19645daa3295cd26bc40b40816dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define el tiempo en bajo y en alto del vibrador dependiendo de la distancia.  <br /></td></tr>
+<tr class="memitem:aac8092c2c7231479a4f2fce737cd7e2c" id="r_aac8092c2c7231479a4f2fce737cd7e2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8092c2c7231479a4f2fce737cd7e2c">detectar_toque</a> ()</td></tr>
+<tr class="memdesc:aac8092c2c7231479a4f2fce737cd7e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifica una variable cuando se toca el sensor de gestos, para definir si esta encendido o apagado.  <br /></td></tr>
+<tr class="memitem:a2b70a8f0f481d8df2c552a4bc79ea889" id="r_a2b70a8f0f481d8df2c552a4bc79ea889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b70a8f0f481d8df2c552a4bc79ea889">medir_distancia</a> (void *puntero_tarea_distancia)</td></tr>
+<tr class="memdesc:a2b70a8f0f481d8df2c552a4bc79ea889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mide la distancia en caso de que se encuentre encendido, envia el dato por bluetooth.  <br /></td></tr>
+<tr class="memitem:ab56e1ff0f71e003f2e08c6ec294528b1" id="r_ab56e1ff0f71e003f2e08c6ec294528b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab56e1ff0f71e003f2e08c6ec294528b1">read_data</a> (uint8_t *data, uint8_t length)</td></tr>
+<tr class="memdesc:ab56e1ff0f71e003f2e08c6ec294528b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función a ejecutarse ante un interrupción de recepción a través de la conexión BLE.  <br /></td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5332d02d82dacdfb5c6dc01cb428b013" id="r_a5332d02d82dacdfb5c6dc01cb428b013"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5332d02d82dacdfb5c6dc01cb428b013">encendido</a> = false</td></tr>
+<tr class="memitem:af03de423173779972c5adf1c241d6f34" id="r_af03de423173779972c5adf1c241d6f34"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af03de423173779972c5adf1c241d6f34">tarea_distancia</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memitem:a685d879f2d6272a0690cb4113e0f63ec" id="r_a685d879f2d6272a0690cb4113e0f63ec"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a685d879f2d6272a0690cb4113e0f63ec">tarea_vibrador</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memitem:ac1f757bdd6dc1c2bb77a386cd32a72cb" id="r_ac1f757bdd6dc1c2bb77a386cd32a72cb"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1f757bdd6dc1c2bb77a386cd32a72cb">distancia</a></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="a3df1b4cad09974bfc68858fad7cdc054" name="a3df1b4cad09974bfc68858fad7cdc054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df1b4cad09974bfc68858fad7cdc054">&#9670;&#160;</a></span>CONFIG_BLINK_PERIOD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_BLINK_PERIOD&#160;&#160;&#160;500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00054">54</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ae36301210b8afcc69240930aa770e2dd" name="ae36301210b8afcc69240930aa770e2dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae36301210b8afcc69240930aa770e2dd">&#9670;&#160;</a></span>DIST_ALTO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DIST_ALTO&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00053">53</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a id="a5c91a9cb5ee72b177f61f609ef294a2c" name="a5c91a9cb5ee72b177f61f609ef294a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c91a9cb5ee72b177f61f609ef294a2c">&#9670;&#160;</a></span>DIST_MEDIA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DIST_MEDIA&#160;&#160;&#160;30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00052">52</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a id="a9f80a58781e2245b940e91a5798e6ee9" name="a9f80a58781e2245b940e91a5798e6ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f80a58781e2245b940e91a5798e6ee9">&#9670;&#160;</a></span>DIST_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DIST_MIN&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00051">51</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00170">170</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="ble__hid__mcu_8h_source.html#l00039">BLE_CONNECTED</a>, <a class="el" href="ble__hid__mcu_8h_source.html#l00038">BLE_DISCONNECTED</a>, <a class="el" href="ble__hid__mcu_8h_source.html#l00037">BLE_OFF</a>, <a class="el" href="ble__mcu_8c_source.html#l00452">BleInit()</a>, <a class="el" href="ble__mcu_8c_source.html#l00530">BleStatus()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00054">CONFIG_BLINK_PERIOD</a>, <a class="el" href="gpio__mcu_8h_source.html#l00053">GPIO_1</a>, <a class="el" href="gpio__mcu_8h_source.html#l00054">GPIO_2</a>, <a class="el" href="gpio__mcu_8h_source.html#l00055">GPIO_3</a>, <a class="el" href="gpio__mcu_8h_source.html#l00061">GPIO_9</a>, <a class="el" href="gpio__mcu_8h_source.html#l00043">GPIO_INPUT</a>, <a class="el" href="gpio__mcu_8h_source.html#l00044">GPIO_OUTPUT</a>, <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>, <a class="el" href="hc__sr04_8c_source.html#l00034">HcSr04Init()</a>, <a class="el" href="led_8h_source.html#l00034">LED_1</a>, <a class="el" href="led_8h_source.html#l00033">LED_2</a>, <a class="el" href="led_8h_source.html#l00032">LED_3</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a>, <a class="el" href="led_8c_source.html#l00046">LedOn()</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="led_8c_source.html#l00084">LedToggle()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00139">medir_distancia()</a>, <a class="el" href="ili9341_8c_source.html#l00019">NULL</a>, <a class="el" href="_proyecto_final_8c_source.html#l00162">read_data()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00045">tarea_distancia</a>, <a class="el" href="_proyecto_final_8c_source.html#l00046">tarea_vibrador</a> y <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a id="aac8092c2c7231479a4f2fce737cd7e2c" name="aac8092c2c7231479a4f2fce737cd7e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8092c2c7231479a4f2fce737cd7e2c">&#9670;&#160;</a></span>detectar_toque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void detectar_toque </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifica una variable cuando se toca el sensor de gestos, para definir si esta encendido o apagado. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00125">125</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto_final_8c_source.html#l00044">encendido</a>, <a class="el" href="gpio__mcu_8h_source.html#l00053">GPIO_1</a> y <a class="el" href="gpio__mcu_8c_source.html#l00101">GPIORead()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00139">medir_distancia()</a>.</p>
+
+</div>
+</div>
+<a id="a2b70a8f0f481d8df2c552a4bc79ea889" name="a2b70a8f0f481d8df2c552a4bc79ea889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b70a8f0f481d8df2c552a4bc79ea889">&#9670;&#160;</a></span>medir_distancia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void medir_distancia </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>puntero_tarea_distancia</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mide la distancia en caso de que se encuentre encendido, envia el dato por bluetooth. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">puntero_tarea_distancia</td><td>Puntero a la tarea medir distancia </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00139">139</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="ble__mcu_8c_source.html#l00544">BleSendString()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00125">detectar_toque()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00056">distancia</a>, <a class="el" href="_proyecto_final_8c_source.html#l00044">encendido</a> y <a class="el" href="hc__sr04_8c_source.html#l00045">HcSr04ReadDistanceInCentimeters()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab56e1ff0f71e003f2e08c6ec294528b1" name="ab56e1ff0f71e003f2e08c6ec294528b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab56e1ff0f71e003f2e08c6ec294528b1">&#9670;&#160;</a></span>read_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void read_data </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función a ejecutarse ante un interrupción de recepción a través de la conexión BLE. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Puntero a array de datos recibidos </td></tr>
+    <tr><td class="paramname">length</td><td>Longitud del array de datos recibidos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00162">162</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a9de19645daa3295cd26bc40b40816dc9" name="a9de19645daa3295cd26bc40b40816dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de19645daa3295cd26bc40b40816dc9">&#9670;&#160;</a></span>vibrar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vibrar </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>puntero_tarea_vibrador</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define el tiempo en bajo y en alto del vibrador dependiendo de la distancia. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">puntero_tarea_vibrador</td><td>Puntero a la tarea vibrar </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00064">64</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto_final_8c_source.html#l00053">DIST_ALTO</a>, <a class="el" href="_proyecto_final_8c_source.html#l00052">DIST_MEDIA</a>, <a class="el" href="_proyecto_final_8c_source.html#l00051">DIST_MIN</a>, <a class="el" href="_proyecto_final_8c_source.html#l00056">distancia</a>, <a class="el" href="_proyecto_final_8c_source.html#l00044">encendido</a>, <a class="el" href="gpio__mcu_8h_source.html#l00061">GPIO_9</a>, <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>, <a class="el" href="led_8h_source.html#l00034">LED_1</a>, <a class="el" href="led_8h_source.html#l00033">LED_2</a>, <a class="el" href="led_8h_source.html#l00032">LED_3</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a> y <a class="el" href="led_8c_source.html#l00046">LedOn()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="ac1f757bdd6dc1c2bb77a386cd32a72cb" name="ac1f757bdd6dc1c2bb77a386cd32a72cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f757bdd6dc1c2bb77a386cd32a72cb">&#9670;&#160;</a></span>distancia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t distancia</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00056">56</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00139">medir_distancia()</a> y <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a id="a5332d02d82dacdfb5c6dc01cb428b013" name="a5332d02d82dacdfb5c6dc01cb428b013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5332d02d82dacdfb5c6dc01cb428b013">&#9670;&#160;</a></span>encendido</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool encendido = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00044">44</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00125">detectar_toque()</a>, <a class="el" href="_proyecto_final_8c_source.html#l00139">medir_distancia()</a> y <a class="el" href="_proyecto_final_8c_source.html#l00064">vibrar()</a>.</p>
+
+</div>
+</div>
+<a id="af03de423173779972c5adf1c241d6f34" name="af03de423173779972c5adf1c241d6f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03de423173779972c5adf1c241d6f34">&#9670;&#160;</a></span>tarea_distancia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t tarea_distancia = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00045">45</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a685d879f2d6272a0690cb4113e0f63ec" name="a685d879f2d6272a0690cb4113e0f63ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a685d879f2d6272a0690cb4113e0f63ec">&#9670;&#160;</a></span>tarea_vibrador</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t tarea_vibrador = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto_final_8c_source.html#l00046">46</a> del archivo <a class="el" href="_proyecto_final_8c_source.html">ProyectoFinal.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto_final_8c_source.html#l00170">app_main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_45d09bf6ea094e875f7c7dc03bf94094.html">Dominguez_Lopez_2C_2025</a></li><li class="navelem"><a href="dir_d05a5793d7ba32ae86f72e584a363d6d.html">firmware</a></li><li class="navelem"><a href="dir_ced14ccf1c889f8c3ec1899802e2ee7c.html">projects</a></li><li class="navelem"><a href="dir_520bf3f382be8e63c343f4750f2f80a7.html">ProyectoFinal</a></li><li class="navelem"><a href="dir_527b7c944c0ff59a839aabc398a77e76.html">main</a></li><li class="navelem"><a href="_proyecto_final_8c.html">ProyectoFinal.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

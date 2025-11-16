@@ -95,6 +95,7 @@
             "rtc_mcu.h": "c",
             "fft.h": "c",
             "i2c.h": "c",
+            "ble_mcu.h": "c"
         },
     },
     "tasks": {

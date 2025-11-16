@@ -1,25 +1,29 @@
-/*! @mainpage Template
+/*! @mainpage Proyecto final Electronica Programable
  *
  * @section genDesc General Description
  *
- * This section describes how the program works.
- *
- * <a href="https://drive.google.com/...">Operation Example</a>
+ * El programa permite la activacion de un vibrador dependiendo de la distancia
+ * medida por el sensor de proximidad, también se puede encender o apagar esta
+ * función mediante un toque del sensor de gestos.
+ * Otra función es que permite la conexión bluetooth con un dispositivo externo,
+ * para el envio de las distancias medidas.
  *
  * @section hardConn Hardware Connection
  *
- * |    Peripheral  |   ESP32   	|
- * |:--------------:|:--------------|
- * |  Resistencia	| 	GPIO_9		|
- *
+ * |    Peripheral           |      ESP32                        |
+ * |:-----------------------:|:----------------------------------|
+ * |  Circuito del vibrador	 | 	GPIO_9		                     |
+ * |        HSCR-04          |  GPIO_2 (Echo) / GPIO_3 (Trigger) |
+ * |  Sensor de gestos       |  GPIO_1                           |
  *
  * @section changelog Changelog
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 31/10/2025 | Creacion del documento                         |
+ * | 14/11/2025 | Se realiza la documentacion                    |
  *
- * @author Ariana y Carmela
+ * @author Dominguez Carmela - Lopez Ariana
  *
  */
 
@@ -53,6 +57,10 @@ volatile uint16_t distancia;
 
 /*==================[internal functions declaration]=========================*/
 
+/** 
+ * @brief Define el tiempo en bajo y en alto del vibrador dependiendo de la distancia
+ * @param puntero_tarea_vibrador Puntero a la tarea vibrar
+*/
 void vibrar(void *puntero_tarea_vibrador){
     uint16_t tiempo_ON = 0;
     uint16_t tiempo_OFF = 0;
@@ -110,17 +118,24 @@ void vibrar(void *puntero_tarea_vibrador){
     }
 }
 
+/** 
+ * @brief Modifica una variable cuando se toca el sensor de gestos,
+ *        para definir si esta encendido o apagado
+*/
 void detectar_toque(){
     static bool anterior = false;
     bool actual = GPIORead(GPIO_1);
 
-    // Solo cambia de estado en flanco ascendente (cuando pasa de 0 a 1)
     if (actual && !anterior){
         encendido = !encendido;
     }
     anterior = actual;
 }
 
+/** 
+ * @brief Mide la distancia en caso de que se encuentre encendido, envia el dato por bluetooth
+ * @param puntero_tarea_distancia Puntero a la tarea medir distancia
+*/
 void medir_distancia(void *puntero_tarea_distancia){
     while (true){
         char msg[32];
@@ -137,7 +152,14 @@ void medir_distancia(void *puntero_tarea_distancia){
     }
 }
 
-void read_data(uint8_t * distancia, uint8_t length){
+/**
+ * @brief Función a ejecutarse ante un interrupción de recepción 
+ * a través de la conexión BLE.
+ * 
+ * @param data      Puntero a array de datos recibidos
+ * @param length    Longitud del array de datos recibidos
+ */
+void read_data(uint8_t * data, uint8_t length){
 
 
 }
